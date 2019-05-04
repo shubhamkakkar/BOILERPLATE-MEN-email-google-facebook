@@ -1,6 +1,7 @@
 const express = require("express")
 const mongoose = require("mongoose")
 const router = express.Router()
+const jwt = require('jsonwebtoken');
 
 const bcrypt = require("bcryptjs")
 
@@ -38,7 +39,9 @@ router.post("/email", (req, res) => {
                                 newUser.save()
                                     .then(saveSuccess => saveSuccess)
                                     .catch(er => console.log(er))
-                                return res.status(200).json(newUser)
+                                const token = jwt.sign({ data: email, exp: Math.floor(Date.now() / 1000) + (60 * 60), }, "Secret");
+
+                                return res.status(200).json({ user: newUser, token })
                             }
                         });
                     });

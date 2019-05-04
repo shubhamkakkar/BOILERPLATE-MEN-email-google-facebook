@@ -16,7 +16,7 @@ mongoose.connect(
 //importing routes
 const signup = require("./routes/signup")
 const login = require("./routes/login")
-
+const success = require("./routes/success")
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
@@ -30,12 +30,19 @@ app.use(session({
 }))
 
 
+app.use(passport.initialize())
+app.use(passport.session())
+
 //exteblishing routes
 app.use('/signup', signup)
 app.use("/login", login)
+app.use("/success", success)
 
-app.use(passport.initialize())
-app.use(passport.session())
+
+app.get("/fail", (req, res) => {
+    res.status(404).json({ error: "failed" })
+})
+
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => console.log("Working at", PORT))
