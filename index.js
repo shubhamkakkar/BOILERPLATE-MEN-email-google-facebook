@@ -17,6 +17,8 @@ mongoose.connect(
 const signup = require("./routes/signup")
 const login = require("./routes/login")
 const success = require("./routes/success")
+const googleOAuth = require("./routes/googleOAuth")
+
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
@@ -36,6 +38,7 @@ app.use(passport.session())
 //exteblishing routes
 app.use('/signup', signup)
 app.use("/login", login)
+app.use("/google", googleOAuth)
 app.use("/success", success)
 
 

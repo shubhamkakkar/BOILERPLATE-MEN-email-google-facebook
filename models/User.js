@@ -14,6 +14,11 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
+    image: {
+        type: String,
+        default: null
+    },
+    //images is made null for email-password
     date: {
         type: Date,
         default: Date.now
