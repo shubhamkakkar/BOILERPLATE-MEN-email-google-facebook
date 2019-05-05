@@ -18,6 +18,7 @@ const signup = require("./routes/signup")
 const login = require("./routes/login")
 const success = require("./routes/success")
 const googleOAuth = require("./routes/googleOAuth")
+const facebookAuth = require("./routes/facebookAuth")
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -39,6 +40,7 @@ app.use(passport.session())
 app.use('/signup', signup)
 app.use("/login", login)
 app.use("/google", googleOAuth)
+app.use("/facebook", facebookAuth)
 app.use("/success", success)
 
 
